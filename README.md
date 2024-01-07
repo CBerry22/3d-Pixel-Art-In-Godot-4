@@ -1,1 +1,2 @@
-# 3d Pixel Art Outlines
+# 3d Pixel Art Post Processing Shader for Godot 4
+This repo has the source code for the Youtube tutorial: https://youtu.be/WBoApONC7bM
