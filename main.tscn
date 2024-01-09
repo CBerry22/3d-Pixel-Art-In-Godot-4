@@ -34,6 +34,7 @@ albedo_color = Color(0.588235, 0.423529, 0.423529, 1)
 material = SubResource("StandardMaterial3D_qp00u")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3sws"]
+diffuse_mode = 3
 albedo_color = Color(0.658824, 0.517647, 0.952941, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_x030n"]
@@ -54,10 +55,12 @@ material = SubResource("StandardMaterial3D_4irvy")
 render_priority = 0
 shader = ExtResource("3_gtvun")
 shader_parameter/depth_threshold = 0.05
+shader_parameter/reverse_depth_threshold = 0.25
 shader_parameter/normal_threshold = 0.6
 shader_parameter/darken_amount = 0.2
 shader_parameter/lighten_amount = 1.5
-shader_parameter/light_direction = Vector3(-0.871251, -0.478692, -0.10852)
+shader_parameter/normal_edge_bias = Vector3(1, -1, -1)
+shader_parameter/light_direction = Vector3(0.710136, -0.444923, 0.545665)
 
 [sub_resource type="QuadMesh" id="QuadMesh_egxnj"]
 material = SubResource("ShaderMaterial_i6itp")
@@ -90,7 +93,7 @@ environment = SubResource("Environment_j45us")
 mesh = SubResource("PlaneMesh_1s8w4")
 
 [node name="Box" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(0.998284, 0, 0.0585571, 0, 1, 0, -0.0585571, 0, 0.998284, -0.163607, 0.460576, 2.60698)
+transform = Transform3D(0.968583, 0, 0.24869, 0, 1, 0, -0.24869, 0, 0.968583, -0.163607, 0.460576, 2.60698)
 mesh = SubResource("BoxMesh_8smba")
 skeleton = NodePath("../../../..")
 
@@ -109,8 +112,13 @@ transform = Transform3D(0.819142, 0, 0.573591, 0, 1, 0, -0.573591, 0, 0.819142, 
 mesh = SubResource("BoxMesh_8smba")
 skeleton = NodePath("../../../..")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(0.123601, -0.475021, 0.871251, 0, 0.877983, 0.478692, -0.992332, -0.059167, 0.10852, 0, 12.2237, 0)
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/Level"]
+transform = Transform3D(-0.607123, 0.352549, -0.707124, 0, 0.894934, 0.446198, 0.790118, 0.270897, -0.543358, 0, 10, 0)
+script = ExtResource("2_7luwn")
+speed = -0.5
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Level/Node3D"]
+transform = Transform3D(1, -1.49012e-08, 2.98023e-08, 1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0)
 shadow_enabled = true
 script = ExtResource("1_o41ps")
 
@@ -119,7 +127,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.936269, 0)
 mesh = SubResource("CylinderMesh_x030n")
 
 [node name="icosphere" parent="SubViewportContainer/SubViewport/Level/Cylinder" instance=ExtResource("1_c7amy")]
-transform = Transform3D(-0.172703, 0, 0.467728, 0, 0.5, 0, -0.467728, 0, -0.172703, 0, 1.75302, 0)
+transform = Transform3D(0.0743993, 0, 0.489014, 0, 0.5, 0, -0.489014, 0, 0.0743993, 0, 1.75302, 0)
 script = ExtResource("2_7luwn")
 
 [node name="Icosphere" parent="SubViewportContainer/SubViewport/Level/Cylinder/icosphere" index="0"]
@@ -130,7 +138,7 @@ transform = Transform3D(0.931609, 0, 0.363463, 0, 1, 0, -0.363463, 0, 0.931609, 
 mesh = SubResource("PrismMesh_ebc50")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(0.464579, 0, -0.885532, 0, 1, 0, 0.885532, 0, 0.464579, -2.89921, 0.491872, 3.3428)
+transform = Transform3D(0.464579, 0, -0.885532, 0, 1, 0, 0.885532, 0, 0.464579, -2.429, 0.492, 3.308)
 mesh = SubResource("PrismMesh_ebc50")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
@@ -138,7 +146,7 @@ transform = Transform3D(0.143216, 0, -0.989691, 0, 1, 0, 0.989691, 0, 0.143216, 
 mesh = SubResource("PrismMesh_ebc50")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(-0.785911, 0, -0.61834, 0, 1, 0, 0.61834, 0, -0.785911, -2.6232, 0.491872, -3.54858)
+transform = Transform3D(-0.785911, 0, -0.61834, 0, 1, 0, 0.61834, 0, -0.785911, -2.388, 0.492, -3.089)
 mesh = SubResource("PrismMesh_ebc50")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
