@@ -33,10 +33,10 @@ void fragment() {
 	vec2 texel_size = 1.0 / VIEWPORT_SIZE.xy;
 	
 	vec2 uvs[4];
-	uvs[0] = vec2(SCREEN_UV.x, SCREEN_UV.y + texel_size.y);
-	uvs[1] = vec2(SCREEN_UV.x, SCREEN_UV.y - texel_size.y);
-	uvs[2] = vec2(SCREEN_UV.x + texel_size.x, SCREEN_UV.y);
-	uvs[3] = vec2(SCREEN_UV.x - texel_size.x, SCREEN_UV.y);
+	uvs[0] = vec2(SCREEN_UV.x, min(1.0 - texel_size.y, SCREEN_UV.y + texel_size.y));
+	uvs[1] = vec2(SCREEN_UV.x, max(0.0, SCREEN_UV.y - texel_size.y));
+	uvs[2] = vec2(min(1.0 - texel_size.x, SCREEN_UV.x + texel_size.x), SCREEN_UV.y);
+	uvs[3] = vec2(max(0.0, SCREEN_UV.x - texel_size.x), SCREEN_UV.y);
 	
 	float depth_diff = 0.0;
 	float depth_diff_reversed = 0.0;

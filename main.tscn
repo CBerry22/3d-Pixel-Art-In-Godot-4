@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8fd6ykycuo5y"]
+[gd_scene load_steps=20 format=3 uid="uid://b8fd6ykycuo5y"]
 
 [ext_resource type="PackedScene" uid="uid://cnd7i1kucwpvq" path="res://models/icosphere.glb" id="1_c7amy"]
 [ext_resource type="Script" path="res://DirectionalLight3D.gd" id="1_o41ps"]
 [ext_resource type="Script" path="res://scripts/spin.gd" id="2_7luwn"]
 [ext_resource type="Shader" path="res://outline.gdshader" id="3_gtvun"]
+[ext_resource type="Texture2D" uid="uid://chi17fb3dyt6b" path="res://icon.svg" id="4_iowfd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_andoa"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -59,8 +60,8 @@ shader_parameter/reverse_depth_threshold = 0.25
 shader_parameter/normal_threshold = 0.6
 shader_parameter/darken_amount = 0.2
 shader_parameter/lighten_amount = 1.5
-shader_parameter/normal_edge_bias = Vector3(1, -1, -1)
-shader_parameter/light_direction = Vector3(0.710136, -0.444923, 0.545665)
+shader_parameter/normal_edge_bias = Vector3(-1, -1, -1)
+shader_parameter/light_direction = Vector3(0.48676, -0.441678, 0.753648)
 
 [sub_resource type="QuadMesh" id="QuadMesh_egxnj"]
 material = SubResource("ShaderMaterial_i6itp")
@@ -77,7 +78,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 3
+stretch_shrink = 5
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
@@ -113,9 +114,8 @@ mesh = SubResource("BoxMesh_8smba")
 skeleton = NodePath("../../../..")
 
 [node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(-0.607123, 0.352549, -0.707124, 0, 0.894934, 0.446198, 0.790118, 0.270897, -0.543358, 0, 10, 0)
+transform = Transform3D(-0.830047, 0.239065, -0.480583, 0, 0.895055, 0.443336, 0.536104, 0.370145, -0.744059, 0, 10, 0)
 script = ExtResource("2_7luwn")
-speed = -0.5
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Level/Node3D"]
 transform = Transform3D(1, -1.49012e-08, 2.98023e-08, 1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -127,8 +127,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.936269, 0)
 mesh = SubResource("CylinderMesh_x030n")
 
 [node name="icosphere" parent="SubViewportContainer/SubViewport/Level/Cylinder" instance=ExtResource("1_c7amy")]
-transform = Transform3D(0.0743993, 0, 0.489014, 0, 0.5, 0, -0.489014, 0, 0.0743993, 0, 1.75302, 0)
+transform = Transform3D(-0.195397, 0, -0.449811, 0, 0.5, 0, 0.449811, 0, -0.195397, 0, 1.75302, 0)
 script = ExtResource("2_7luwn")
+speed = -0.5
 
 [node name="Icosphere" parent="SubViewportContainer/SubViewport/Level/Cylinder/icosphere" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_3v0k5")
@@ -149,8 +150,14 @@ mesh = SubResource("PrismMesh_ebc50")
 transform = Transform3D(-0.785911, 0, -0.61834, 0, 1, 0, 0.61834, 0, -0.785911, -2.388, 0.492, -3.089)
 mesh = SubResource("PrismMesh_ebc50")
 
+[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/Level"]
+transform = Transform3D(0.580703, -0.0355112, 0.813341, 0, 0.999048, 0.0436194, -0.814116, -0.0253299, 0.580151, 3.286, 0.699, 0.525)
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("4_iowfd")
+
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.582154, -0.303241, 0.754415, 0, 0.92785, 0.372954, -0.813079, -0.217117, 0.540152, 8.58627, 4.24472, 6.14766)
+transform = Transform3D(0.582154, -0.303241, 0.754415, 0, 0.92785, 0.372954, -0.813079, -0.217117, 0.540151, 7.40855, 3.6625, 5.30444)
 projection = 1
 current = true
 size = 10.0
